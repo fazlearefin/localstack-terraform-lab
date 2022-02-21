@@ -43,7 +43,7 @@ git clone https://github.com/fazlearefin/localstack-terraform-lab.git
 ### Step 1 Start localstack
 
 ```bash
-cd localstack-terraform-lab/01-localstack
+cd 01-localstack
 ./localstack-start.sh
 # leave this terminal window open. Once you are done, press `Ctrl - C` to stop localstack.
 ```
@@ -51,7 +51,7 @@ cd localstack-terraform-lab/01-localstack
 ### Step 2 Create the s3 and dynamodb backend
 
 ```bash
-cd ../02-s3-dynamodb-backend
+cd 02-s3-dynamodb-backend
 terraform init
 terraform apply -auto-approve
 # this will now create the s3 bucket for saving state files and dynamo db for locking
@@ -60,7 +60,7 @@ terraform apply -auto-approve
 ### Step 3 Create the sample ec2 instance
 
 ```bash
-cd ../03-sample-ec2-infra
+cd 03-sample-ec2-infra
 terraform init
 terraform apply -auto-approve
 # this will now create an ec2 instance and save the terraform state files in the s3 bucket you created in step 2
@@ -76,9 +76,10 @@ In order to stop localstack go the terminal window you left localstack running a
 
 ## aws-cli
 
-You can use aws-cli to verify the infra that has been created. Source the `aws-cli-alias-setup.source` file to setup aws cli to work with localstack.
+You can use **aws-cli** to verify the infra that has been created. Source the `aws-cli-alias-setup.source` file to setup your aws-cli to work with localstack.
 
-```
+```bash
 source aws-cli-alias-setup.source
 aws s3 ls
+aws ec2 describe-instances
 ```
