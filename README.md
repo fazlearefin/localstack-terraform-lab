@@ -70,7 +70,12 @@ terraform apply -auto-approve
 
 Go to the appropriate directories and run `terraform destroy -auto-approve` in reverse order (first the sample ec2 instance, then the backend s3+synamodb) to remove the infrastructure.
 
-In order to stop localstack go the terminal window you left localstack running and press **Ctrl - C**
+In order to stop localstack go the terminal window you left localstack running and press **Ctrl - C**. If you cannot find that window, you can stop localstack the following way:
+
+```bash
+cd 01-localstack/.localstack
+docker-compose down
+```
 
 ---
 
