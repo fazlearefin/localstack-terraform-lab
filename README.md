@@ -57,6 +57,16 @@ terraform apply -auto-approve
 # this will now create the s3 bucket for saving state files and dynamo db for locking
 ```
 
+#### Troubleshooting
+
+In case you performed this step earlier and shut down localstack, the resources you created in localstack will not be there anymore. You will need to remove all the resources from the `terraform.tfstate` file as they do not exist anymore in localstack:
+
+```bash
+terraform state list | xargs -I{} terraform state rm {}
+```
+
+Alternatively, remove the `terraform.tfstate` file using `rm terraform.tfstate`.
+
 ### Step 3 Create the sample ec2 instance
 
 ```bash
