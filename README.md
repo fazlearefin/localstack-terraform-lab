@@ -29,10 +29,10 @@ The purpose of this repo is to give you the barebones to use terraform with loca
 
 You should have the following installed on your development machine. You can find instructuctions on how to install the following on the internet for your operating system.
 
-- docker
-- docker-compose
-- terraform
-- aws-cli
+- docker (version 28 or later)
+- docker compose plugin
+- terraform (version 1.11 or later)
+- aws-cli (version 2.25 or later)
 
 ### Step 0b Clone this repo
 
@@ -48,13 +48,13 @@ cd 01-localstack
 # leave this terminal window open. Once you are done, press `Ctrl - C` to stop localstack.
 ```
 
-### Step 2 Create the s3 and dynamodb backend
+### Step 2 Create the s3 backend
 
 ```bash
-cd 02-s3-dynamodb-backend
+cd 02-s3-backend
 terraform init
 terraform apply -auto-approve
-# this will now create the s3 bucket for saving state files and dynamo db for locking
+# this will now create the s3 bucket for saving state files
 ```
 
 #### Troubleshooting

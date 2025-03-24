@@ -1,32 +1,29 @@
 terraform {
-  required_version = ">= 1.1.5"
+  required_version = ">= 1.11.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.2"
+      version = "~> 5.92"
     }
   }
 
   backend "s3" {
     region                      = "us-east-1"
-    bucket                      = "tf-state-bucket"
-    key                         = "state.tfstate"
-    dynamodb_table              = "tf_state_locks"
-    encrypt                     = true
     skip_credentials_validation = true
-    skip_metadata_api_check     = true
-    force_path_style            = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    bucket                      = "tf-state-bucket"
+    use_lockfile                = true
+    key                         = "state.tfstate"
+    encrypt                     = true
+    use_path_style              = true
     endpoint                    = "http://localhost:4566"
-    dynamodb_endpoint           = "http://localhost:4566"
   }
 }
 
 provider "aws" {
   region                      = var.region
   s3_use_path_style           = true
-  skip_credentials_validation = true
-  skip_metadata_api_check     = true
-  skip_requesting_account_id  = true
 
   endpoints {
     apigateway     = "http://localhost:4566"
